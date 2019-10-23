@@ -32,10 +32,33 @@ def check_result(user_input,letters,good_leters,bad_letters)
     return 0
   end
 
+  if  (user_input == 'е' && letters.include?('ё')) ||
+      (user_input == 'ё' && letters.include?('е')) ||
+      (user_input == 'и' && letters.include?('й')) ||
+      (user_input == 'й' && letters.include?('и'))
+    # В любом (поэтому эти условия объединяет оператор ||) из этих случаев мы
+    # добавляем в массив хороших букв ту, что была введена пользователем и
+    # её подружку, если есть (считаем «подружками» е + ё» и и + й).
+    if user_input == 'е'
+      good_leters << 'ё'
+    end
+
+    if user_input == 'ё'
+      good_leters << 'е'
+    end
+
+    if user_input == 'и'
+      good_leters << 'й'
+    end
+
+    if user_input == 'й'
+      good_leters << 'и'
+    end
+  end
+
   #Введена правильная буква
   if letters.include? user_input
     good_leters << user_input
-
     # Условие, когда отгадано все слово
     #.uniq - оставляет только уникальные элементы
     # (убирает дублирующиеся)
