@@ -1,5 +1,30 @@
 class ResultPrinter
 
+  def initialize
+    @status_image = []
+
+    # Счетчик
+    counter = 0
+
+    current_path = File.dirname(__FILE__ )
+
+    # Запись изображений виселицы
+    while counter <= 7 do
+      file_name = current_path + "/image/#{counter}.txt"
+
+      if File.exist?(file_name)
+        f = File.new(file_name, 'r:UTF-8')
+
+        # .read - запись всех элементов из файла
+        @status_image << f.read
+        f.close
+      else
+        @status_image << "\n[ Изображение не найдено ]\n"
+      end
+      counter += 1
+    end
+  end
+
   # 1. выводить загаданное слово (по мере отгаданных букв)
   # 2. информацию об ошибках и уже названные буквы
   # 3. ошибок >7 - сообщить о поражении
@@ -48,125 +73,11 @@ class ResultPrinter
   end
 
   def cls
-    system "clear"
+    system('clear') || system('cls')
   end
 
   def print_viselitsa (errors)
-    case errors
-    when 0
-      puts '
-          _______
-          |/
-          |
-          |
-          |
-          |
-          |
-          |
-          |
-        __|________
-        |         |
-        '
-    when 1
-      puts '
-        _______
-        |/
-        |     ( )
-        |
-        |
-        |
-        |
-        |
-        |
-      __|________
-      |         |
-      '
-    when 2
-      puts '
-        _______
-        |/
-        |     ( )
-        |      |
-        |
-        |
-        |
-        |
-        |
-      __|________
-      |         |
-      '
-    when 3
-      puts '
-        _______
-        |/
-        |     ( )
-        |      |_
-        |        \\
-        |
-        |
-        |
-        |
-      __|________
-      |         |
-      '
-    when 4
-      puts '
-        _______
-        |/
-        |     ( )
-        |     _|_
-        |    /   \\
-        |
-        |
-        |
-        |
-      __|________
-      |         |
-      '
-    when 5
-      puts '
-        _______
-        |/
-        |     ( )
-        |     _|_
-        |    / | \\
-        |      |
-        |
-        |
-        |
-      __|________
-      |         |
-      '
-
-    when 6
-      puts '
-        _______
-        |/
-        |     ( )
-        |     _|_
-        |    / | \\
-        |      |
-        |     / \\
-        |    /   \\
-        |
-      __|________
-      |         |
-      '
-    when 7
-      puts '
-        _______
-        |/     |
-        |     (_)
-        |     _|_
-        |    / | \\
-        |      |
-        |     / \\
-        |    /   \\
-        |
-      __|________
-      |         |
-      '
-    end
+    puts @status_image[errors]
   end
 
 end

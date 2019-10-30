@@ -1,15 +1,20 @@
 #(c) goodprogrammer.ru
 
-require "./game.rb"
-require "./result_printer.rb"
+current_path = File.dirname(__FILE__ )
 
-puts "Игра виселица, v1"
+require current_path + "/game.rb"
+require current_path + "/result_printer.rb"
+require current_path + "/word_reader.rb"
+
+puts "Игра виселица, v3"
 
 printer = ResultPrinter.new
 
+reader = WordReader.new
+
 # Считывает слово из командной строки
 # при вызове vilelitsa.rb
-slovo = ARGV[0]
+slovo = reader.read_from_file(current_path + "/data/words.txt")
 
 game = Game.new(slovo)
 while  game.status == 0 do
