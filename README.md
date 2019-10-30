@@ -1,3 +1,2 @@
-Game "Viselitsa.
-1 player enters a word (ruby viselitsa.rb your word).
-2 the player must guess all the letters of the word.
+The game is "Viselitsa". 
+The player is asked to guess all the letters of a random word ( all words are written in the file: ./data/word.txt).
