@@ -12,13 +12,15 @@ class ResultPrinter
     while counter <= 7 do
       file_name = current_path + "/image/#{counter}.txt"
 
-      if File.exist?(file_name)
+      begin
         f = File.new(file_name, 'r:UTF-8')
 
         # .read - запись всех элементов из файла
         @status_image << f.read
         f.close
-      else
+      rescue SystemCallError
+        # Если случилась такая ошибка мы продолжаем работать дальше, т.к. без
+        # изображения виселицы вполне можно играть.
         @status_image << "\n[ Изображение не найдено ]\n"
       end
       counter += 1

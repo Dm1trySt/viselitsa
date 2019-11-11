@@ -26,14 +26,21 @@ class Game
         'запуске программы'
     end
 
+    # Переводим слово в верхний регистр перед тем, как разбить на буквы.
+    # Используем для этого метод upcase в модуле UnicodeUtils.
+    slovo = UnicodeUtils.upcase(slovo.encode('UTF-8'))
+
     #split - при передачи пустой строки возвращает
     # слово разбитое на массив букв
-    return slovo.encode('UTF-8').split('')
+    return slovo.split('')
   end
 
   # Проверка наличия буквы в загаданном слове
   # Или среди уже названных букв (@good_letter, @bad_letter)
   def next_step(bukva)
+
+    # Введенную пользователем букву Мы также переводим в верхний регистр
+    bukva = UnicodeUtils.upcase(bukva)
 
     # Проверка на победу или проигрыш
     if @status == -1 || @status == 1

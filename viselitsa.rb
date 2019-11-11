@@ -1,10 +1,24 @@
 #(c) goodprogrammer.ru
 
-current_path = File.dirname(__FILE__ )
+# Проверяем на какой ОС работаем, если windows - задаем кодировки
+if (Gem.win_platform?)
+  Encoding.default_external = Encoding.find(Encoding.locale_charmap)
+  Encoding.default_internal = __ENCODING__
 
-require current_path + "/game.rb"
-require current_path + "/result_printer.rb"
-require current_path + "/word_reader.rb"
+  [STDIN, STDOUT].each do
+    io.set_encoding(Encoding.default_external, Encoding.default_internal)
+  end
+end
+
+# Подключаем библиотеку unicode_utils. Предварительно её надо установить, набрав
+# в консоли:
+# gem install unicode_utils
+require "unicode_utils"
+require_relative 'game.rb'
+require_relative 'result_printer.rb'
+require_relative 'word_reader.rb'
+
+current_path = File.dirname(__FILE__ )
 
 puts "Игра виселица, v3"
 
