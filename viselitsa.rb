@@ -13,7 +13,7 @@ end
 # Подключаем библиотеку unicode_utils. Предварительно её надо установить, набрав
 # в консоли:
 # gem install unicode_utils
-require "unicode_utils"
+
 require_relative 'game.rb'
 require_relative 'result_printer.rb'
 require_relative 'word_reader.rb'

@@ -1,3 +1,5 @@
+require "unicode_utils"
+
 class Game
 
   # Конструктор
